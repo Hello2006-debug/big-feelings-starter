@@ -67,7 +67,7 @@ async function connectToDatabase() {
     } catch (err) {
         // an exception should change the flow of control of the application, because something is wrong
         // this error should be addressed before continuing
-        throw new Error("Problem connecting to database:", err);
+        throw new Error("Problem connecting to database:" + err);
     }
 }
 await connectToDatabase();

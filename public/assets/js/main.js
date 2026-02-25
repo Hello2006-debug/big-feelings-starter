@@ -8,7 +8,7 @@
 let baseurl = "https://big-feelings.vercel.app";
 
 // 👉 add new base url to pull from your own database (Chapter 10 wiki) ...
-
+baseurl = "";
 // 👈
 
 
@@ -65,16 +65,28 @@ async function fetchData(url) {
  * Submit form handler
  */
 function submitForm(e) {
-    try {
-        // 👉 add code inside this function (Chapter 10 wiki) ...
+    // step 1 - get form data
+    e.preventDefault();
+    let data = getFormData();
+    console.log(data);
 
-        
-        // 👈
-    } catch (e) {
-        showSuccessMsg("Please add a feeling and select a location", "white");
-    }
+    // step 2 - create options object to send data
+    let options = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+    };
+
+    // step 3 - use fetch to send data
+    fetch(baseurl + "/api/feeling", options)
+        .then((response) => response.json())
+        .then(async (json) => {
+            await updateMap(json);
+            showSuccessMsg("Your feeling was added");
+        });
 }
-
 
 
 /**
