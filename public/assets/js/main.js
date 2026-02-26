@@ -17,8 +17,8 @@ let data = [];
 
 async function main() {
     // 👉 add code inside this function (Chapter 10) ...
-
-
+    data = await fetchFeelings();
+    await updateMap(data);
 
     // 👈
 }
