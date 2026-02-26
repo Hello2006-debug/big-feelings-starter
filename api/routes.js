@@ -51,8 +51,8 @@ router.post("/api/feeling", async function (req, res) {
         let doc = {
             "feeling": req.body.feeling,
             "color": req.body.color,
-            "lat": req.body.lat || "",
-            "lng": req.body.lng || "",
+            "lat": parseFloat(req.body.lat),
+            "lng": parseFloat(req.body.lng),
             "datetime": new Date()
         }
         result = await db.addOne(doc);
